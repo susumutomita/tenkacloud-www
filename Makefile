@@ -1,11 +1,13 @@
 .DEFAULT_GOAL := help
-.PHONY: help install dev deploy lint format typecheck test tf-fmt tf-fmt-check tf-validate check before-commit
+.PHONY: help install install-ci dev deploy lint format typecheck test tf-fmt tf-fmt-check tf-validate check before-commit
 
 help: ## List targets
 	@grep -E '^[a-z][a-zA-Z0-9_-]*:.*##' Makefile | sed -E 's/:.*## /\t/' | sort
 
-install:   ## Install JS dependencies (bun)
+install:    ## Install JS dependencies (bun)
 	bun install
+install-ci: ## CI install: frozen lockfile + no lifecycle scripts (supply-chain)
+	bun install --frozen-lockfile --ignore-scripts
 dev:       ## Local dev server (Cloudflare Pages, with functions)
 	bun run dev
 deploy:    ## Deploy the site + functions to Cloudflare Pages

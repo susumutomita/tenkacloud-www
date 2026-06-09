@@ -99,6 +99,14 @@ curl -X POST https://tenkacloud.com/api/contact \
 
 and confirm the inquiry email arrives in your Gmail with a working `Reply-To`.
 
+## Supply chain security
+
+Mirrors the TenkaCloud repo's defense (mini Shai-Hulud 2nd-wave mitigation):
+
+- **Bun `trustedDependencies: []`** — Bun blocks transitive lifecycle scripts by default; the allowlist is explicit and empty.
+- **`.npmrc`** — `ignore-scripts=true` + `min-release-age=168h` (7-day quarantine) protect npm/yarn/pnpm fallbacks.
+- **CI** — Aikido **Safe Chain** (`@aikidosec/safe-chain setup-ci`) for malicious-package detection, then `bun install --frozen-lockfile --ignore-scripts` (`make install-ci`); third-party actions are pinned to commit SHAs and `permissions` is least-privilege.
+
 ## Notes
 
 - Spam: a hidden `botcheck` honeypot rejects bots. Add Cloudflare Turnstile later if needed.
