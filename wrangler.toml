@@ -1,0 +1,17 @@
+name = "tenkacloud-www"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "public"
+
+# Email Workers binding: lets functions/api/contact.ts send the inquiry to the
+# verified Email Routing destination (your Gmail). In production these are managed
+# by Terraform on the Pages project (see terraform/ and README.md). The values
+# below are for `wrangler pages dev` LOCAL development only — fill them in a local
+# `.dev.vars` / uncomment with your own verified addresses; do not commit secrets.
+
+# [[send_email]]
+# name = "CONTACT_MAILER"
+# destination_address = "you@gmail.com"   # must be Email-Routing-verified in prod
+
+# [vars]
+# CONTACT_FROM = "contact@tenkacloud.com" # verified sender on the zone
+# CONTACT_TO   = "you@gmail.com"          # Email Routing destination
