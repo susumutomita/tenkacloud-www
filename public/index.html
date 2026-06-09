@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TenkaCloud — Run real cloud drills. Build reusable problem catalogs.</title>
+<meta name="description" content="TenkaCloud is an OSS platform for running real cloud drills. Teams solve hands-on cloud problems in isolated AWS environments, while organizers manage events, scoring, and reusable problem catalogs. Apache 2.0." />
+<meta property="og:title" content="TenkaCloud — Run real cloud drills. Build reusable problem catalogs." />
+<meta property="og:description" content="An OSS platform for running real cloud drills. Teams solve hands-on cloud problems in isolated AWS environments, while organizers manage events, scoring, and reusable problem catalogs. Apache 2.0." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="ja_JP" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">TenkaCloud</div>
+    <div class="nav-links">
+      <a href="#modes" data-i18n="nav.product">プロダクト</a>
+      <a href="#onboard" data-i18n="nav.problems">問題</a>
+      <a href="#extend" data-i18n="nav.extend">問題を作る</a>
+      <a href="#community" data-i18n="nav.community">コミュニティ</a>
+      <a href="https://github.com/susumutomita/TenkaCloud#readme" target="_blank" rel="noopener noreferrer" data-i18n="nav.docs">ドキュメント</a>
+      <a href="#offerings" data-i18n="nav.offerings">商用プラン</a>
+      <a href="#pricing" data-i18n="nav.pricing">料金</a>
+      <a href="#contact" data-i18n="nav.contact">お問い合わせ</a>
+      <a href="https://github.com/susumutomita/TenkaCloud" target="_blank" rel="noopener noreferrer" data-i18n="nav.github">GitHub</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang on" data-lang="ja" type="button">日本語</button>
+        <button class="lang" data-lang="en" type="button">English</button>
+      </div>
+      <a class="github-mark" href="https://github.com/susumutomita/TenkaCloud" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.67 0 8.2c0 3.62 2.29 6.69 5.47 7.78.4.08.55-.18.55-.4 0-.2-.01-.86-.01-1.56-2.01.38-2.53-.5-2.69-.96-.09-.24-.48-.96-.82-1.15-.28-.15-.68-.53-.01-.54.63-.01 1.08.59 1.23.84.72 1.24 1.87.89 2.33.68.07-.53.28-.89.51-1.09-1.78-.21-3.64-.91-3.64-4.04 0-.89.31-1.62.82-2.19-.08-.21-.36-1.04.08-2.16 0 0 .67-.22 2.2.84A7.34 7.34 0 0 1 8 3.98c.68 0 1.36.09 2 .27 1.53-1.06 2.2-.84 2.2-.84.44 1.12.16 1.95.08 2.16.51.57.82 1.3.82 2.19 0 3.14-1.87 3.83-3.65 4.04.29.26.54.75.54 1.51 0 1.09-.01 1.96-.01 2.23 0 .22.15.48.55.4A8.16 8.16 0 0 0 16 8.2C16 3.67 12.42 0 8 0Z"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>
+        <span data-i18n="hero.h1a">OSS の問題パックで、</span><em data-i18n="hero.h1b">本物のクラウド演習を回す。</em>
+      </h1>
+      <p class="sub" data-i18n="hero.sub">TenkaCloud は本物のクラウド演習を回すための OSS プラットフォーム。 チームは 隔離された AWS 環境 でハンズオン問題を解き、 主催者は イベント / 採点 / 再利用可能な問題カタログ を 1 つの管理画面で運営できます。</p>
+      <div class="cta-row">
+        <a
+          class="cta-primary"
+          href="#pricing"
+          data-cta="get-quote"
+        >
+          <span data-i18n="hero.cta1">Hosted Event の見積もり</span> →
+        </a>
+        <a
+          href="https://github.com/susumutomita/TenkaCloud#readme"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="try-oss"
+        >
+          <span data-i18n="hero.cta2">OSS で試す</span> →
+        </a>
+        <a
+          href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/demos/quickstart-5min.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="watch-demo"
+        >
+          <span data-i18n="hero.demo_link">5 分のデモを見る</span> →
+        </a>
+      </div>
+      <p class="hero-trust" data-i18n="hero.trust">合同会社 BULL 運営 · Apache 2.0 · clone から初回起動まで 30 分</p>
+    </div>
+    <div class="hero-visual">
+      <div class="app-window">
+        <div class="app-topbar">
+          <span>TenkaCloud — TenkaCloud Battle</span>
+          <span class="app-chrome-meta"><span data-i18n="app.lang">◉ 日本語 ▼</span><span>◎ Score: -3805 pt / Rank: 2/2</span><span data-i18n="app.profile">♙ ゲスト ▼</span></span>
+        </div>
+        <div class="app-body">
+          <aside class="app-sidebar">
+            <div class="app-menu-title"><span data-i18n="app.menu">メニュー</span><span>⌄</span></div>
+            <div class="app-menu-group" data-i18n="app.event">• イベント</div>
+            <a class="on" data-i18n="app.home">ホーム</a>
+            <a data-i18n="app.scoreboard">スコアボード</a>
+            <a data-i18n="app.score_events">スコアイベント</a>
+            <a data-i18n="app.notifications">お知らせ</a>
+            <div class="app-menu-group">• Quests</div>
+            <a data-i18n="app.problems">問題一覧</a>
+            <div class="app-menu-group" data-i18n="app.tools">• ツール</div>
+            <a data-i18n="app.sso">SSO 資格情報</a>
+          </aside>
+          <main class="dashboard">
+            <h3 data-i18n="app.welcome">ようこそ、ゲストさん</h3>
+            <div class="dashboard-sub" data-i18n="app.welcome_sub">TenkaCloud Battle へようこそ</div>
+            <div class="metric-card">
+              <div class="metric-title" data-i18n="app.team_score">チーム累計スコア</div>
+              <div class="metric-grid">
+                <div><div class="metric-label" data-i18n="app.total">合計</div><div class="metric-value green">-3805 pt</div></div>
+                <div><div class="metric-label" data-i18n="app.rank">順位</div><div class="metric-value blue">2 / 2</div></div>
+                <div><div class="metric-label" data-i18n="app.problem_count">問題数</div><div class="metric-value">3</div></div>
+                <div><div class="metric-label" data-i18n="app.completed">完了済</div><div class="metric-value">1</div></div>
+              </div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-head">
+                <div>
+                  <div class="chart-title" data-i18n="app.score_trend">スコア推移</div>
+                  <div class="chart-desc" data-i18n="app.score_trend_desc">同 event 内の全 2 チームを表示</div>
+                </div>
+                <div class="select-pill" data-i18n="app.select_team">event / チームを選択　⌄</div>
+              </div>
+              <svg class="line-chart" viewBox="0 0 760 300" role="img" aria-label="score chart">
+                <rect x="0" y="0" width="760" height="300" fill="#fff"/>
+                <g stroke="#e5e9f0" stroke-width="1">
+                  <path d="M50 25H735M50 65H735M50 105H735M50 145H735M50 185H735M50 225H735M50 265H735"/>
+                  <path d="M50 25V265M130 25V265M210 25V265M290 25V265M370 25V265M450 25V265M530 25V265M610 25V265M690 25V265"/>
+                </g>
+                <polyline fill="none" stroke="#28a35f" stroke-width="2.5" points="50,42 90,51 90,66 130,70 130,82 170,89 170,104 210,108 210,121 250,126 250,140 290,145 290,159 330,163 330,177 370,181 370,194 410,199 410,212 450,216 450,229 490,233 490,245 530,250 530,258 570,262 570,270 610,274 610,282 650,286 650,292 735,298"/>
+                <polyline fill="none" stroke="#1f78d1" stroke-width="2.5" points="50,44 90,54 90,73 130,77 130,94 170,100 170,116 210,121 210,137 250,143 250,158 290,164 290,179 330,185 330,199 370,205 370,219 410,224 410,238 450,243 450,256 490,261 490,272 530,277 530,287 570,291 570,299 610,304 610,312 650,316 650,324 735,334"/>
+                <g font-family="JetBrains Mono, monospace" font-size="11" fill="#344155">
+                  <text x="34" y="29">0</text><text x="18" y="69">-500</text><text x="12" y="109">-1000</text><text x="12" y="149">-1500</text><text x="12" y="189">-2000</text><text x="12" y="229">-2500</text><text x="12" y="269">-3000</text>
+                  <text x="82" y="288">21:37</text><text x="162" y="288">21:39</text><text x="242" y="288">21:41</text><text x="322" y="288">21:43</text><text x="402" y="288">21:45</text><text x="482" y="288">21:47</text><text x="562" y="288">21:49</text><text x="642" y="288">21:51</text>
+                </g>
+                <g transform="translate(575 145)">
+                  <rect width="150" height="74" rx="8" fill="#fff" stroke="#aeb7c5"/>
+                  <text x="13" y="22" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#111827">21:50</text>
+                  <path d="M14 42H26" stroke="#1f78d1" stroke-width="4" stroke-linecap="round"/>
+                  <text x="32" y="45" font-family="JetBrains Mono, monospace" font-size="11" fill="#111827">gan        -2900 pt</text>
+                  <path d="M14 59H26" stroke="#28a35f" stroke-width="4" stroke-linecap="round"/>
+                  <text x="32" y="62" font-family="JetBrains Mono, monospace" font-size="11" fill="#111827" data-i18n="app.chart_you">(ゲスト あなた) -2705 pt</text>
+                </g>
+              </svg>
+              <div class="chart-legend"><span style="color:#1f78d1">━ gan</span><span style="color:#28a35f" data-i18n="app.legend_you">━ (ゲスト あなた)</span></div>
+            </div>
+            <div class="challenge-card">
+              <h4 data-i18n="app.challenge_title">問題に挑戦</h4>
+              <p data-i18n="app.challenge_body">3問が deploy 済です。問題一覧から挑戦してください。</p>
+              <button class="tiny-button" type="button" data-i18n="app.open_problems">問題一覧を開く</button>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="modes">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="modes.eyebrow">2 つのモード</div>
+    <h2 data-i18n="modes.h2">対戦か、演習か。両方か。</h2>
+    <p class="lead" data-i18n="modes.lead">リアルタイムの Battle と、じっくり解く Challenge。1 つのイベントに混ぜて使える。</p>
+    <div class="twoup">
+      <div class="tile">
+        <h3 class="kicker" data-i18n="modes.battle.kicker">Battle</h3>
+        <p data-i18n="modes.battle.p">稼働率で競う、リアルタイム対戦。毎分のヘルスチェックを生き残ったチームが、勝つ。</p>
+        <div class="demo">
+          <div class="portal-preview score-events-preview">
+            <div class="portal-page-title" data-i18n="preview.score_events.title">Score events</div>
+            <div class="portal-page-desc" data-i18n="preview.score_events.desc">自チームのスコア変動履歴 (30 秒ごと自動更新、新しい順 100 件まで)</div>
+            <div class="portal-container">
+              <div class="portal-container-title" data-i18n="preview.score_events.chart">累計 score 推移</div>
+              <svg class="portal-chart" viewBox="0 0 560 210" role="img" aria-label="score events chart">
+                <rect width="560" height="210" fill="#fff"/>
+                <g stroke="#e5e9f0" stroke-width="1">
+                  <path d="M45 20H535M45 58H535M45 96H535M45 134H535M45 172H535"/>
+                  <path d="M45 20V172M125 20V172M205 20V172M285 20V172M365 20V172M445 20V172M535 20V172"/>
+                </g>
+                <polyline fill="none" stroke="#0972d3" stroke-width="3" points="45,38 86,48 86,58 126,64 126,76 166,82 166,92 206,99 206,109 246,116 246,126 286,132 286,142 326,148 326,157 366,162 366,168 406,173 406,178 446,182 446,186 535,191"/>
+                <g font-family="JetBrains Mono, monospace" font-size="10" fill="#5d6877">
+                  <text x="10" y="24">0</text><text x="8" y="62">-500</text><text x="3" y="100">-1000</text><text x="3" y="138">-1500</text><text x="3" y="176">-2000</text>
+                  <text x="40" y="197">21:37:00</text><text x="198" y="197">21:43:00</text><text x="356" y="197">21:49:00</text>
+                </g>
+              </svg>
+            </div>
+            <div class="portal-container">
+              <div class="portal-container-title" data-i18n="preview.score_events.history">履歴 (100)</div>
+              <table class="portal-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="preview.score_events.col_time">発生時刻</th>
+                    <th data-i18n="preview.score_events.col_problem">問題</th>
+                    <th data-i18n="preview.score_events.col_type">種類</th>
+                    <th data-i18n="preview.score_events.col_points">変動</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-i18n="preview.score_events.time_now">数秒前</td>
+                    <td><code class="portal-code">microservice-migration-battle</code></td>
+                    <td><span class="portal-badge green">Battle (uptime)</span></td>
+                    <td><span class="portal-points negative">-100 pt</span></td>
+                  </tr>
+                  <tr>
+                    <td data-i18n="preview.score_events.time_minute">1 分前</td>
+                    <td><code class="portal-code">hello-world</code></td>
+                    <td><span class="portal-badge blue">Challenge (flag)</span></td>
+                    <td><span class="portal-points positive">+800 pt</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tile">
+        <h3 class="kicker" data-i18n="modes.challenge.kicker">Challenge</h3>
+        <p data-i18n="modes.challenge.p">問題を解き、フラグを提出する。AWS の一つひとつのサービスを、ひとつずつ理解していく。</p>
+        <div class="demo">
+          <div class="portal-preview">
+            <div class="portal-page-title" data-i18n="preview.quests.title">問題一覧 (Quests)</div>
+            <div class="portal-page-desc" data-i18n="preview.quests.desc">自チームに deploy された問題のカタログ。各カードからアクセス先 URL に直接遷移できます。</div>
+            <div class="portal-tabs" aria-label="カテゴリで絞り込み">
+              <span class="portal-tab active" data-i18n="preview.quests.all">すべて (3)</span>
+              <span class="portal-tab">Battle (2)</span>
+              <span class="portal-tab">Challenge (1)</span>
+            </div>
+            <div class="portal-container">
+              <div class="portal-container-title" data-i18n="preview.quests.unsolved">未解決 (3)</div>
+              <div class="quest-card-list">
+                <div class="quest-card">
+                  <code>microservice-migration-battle</code>
+                  <span class="portal-badge red">Battle</span>
+                  <span class="portal-badge grey" data-i18n="preview.quests.diff_mid">難易度: 中級</span>
+                  <span class="status-text" data-i18n="preview.quests.in_progress">挑戦中</span>
+                </div>
+                <div class="quest-card">
+                  <code>hello-world</code>
+                  <span class="portal-badge blue">Challenge</span>
+                  <span class="portal-badge grey" data-i18n="preview.quests.diff_intro">難易度: 入門</span>
+                  <span class="status-text pending" data-i18n="preview.quests.unsolved_status">未解答</span>
+                </div>
+                <div class="quest-card">
+                  <code>hello-world-battle</code>
+                  <span class="portal-badge red">Battle</span>
+                  <span class="portal-badge grey" data-i18n="preview.quests.diff_mid">難易度: 中級</span>
+                  <span class="status-text" data-i18n="preview.quests.in_progress">挑戦中</span>
+                </div>
+              </div>
+            </div>
+            <div class="portal-collapsed" data-i18n="preview.quests.cleared">⌄ 解決済み (0)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap audience-intro">
+    <div class="eyebrow" data-i18n="aud.eyebrow">誰のための</div>
+    <h2 data-i18n="aud.h2">クラウド実戦力を、組織で育てる。</h2>
+    <p class="lead" data-i18n="aud.lead">クラウド人材育成 (= CCoE) / Platform / SRE / Security 部門が、 イベント基盤を自前で作らずに ハンズオン AWS 演習 を開催 / 運営できます。 環境払い出し / ログイン / 採点 / 進捗管理 まで、 ひとつの画面で完結。</p>
+  </div>
+  <div class="aud">
+    <div class="col">
+      <div class="role" data-i18n="aud.a.role">CCoE / クラウド人材育成</div>
+      <h3 data-i18n="aud.a.h">研修イベントを、 年に複数回。</h3>
+      <p data-i18n="aud.a.p">新卒オンボーディング / 内製化推進 / 部門横断の AWS 演習を、 同じプラットフォームで 年に複数回 開催できる。 単発ハンズオンから 計画的な 年間プログラム へ。</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud/discussions" target="_blank" rel="noopener noreferrer"><span data-i18n="aud.a.more">導入のご相談</span> ›</a>
+    </div>
+    <div class="col">
+      <div class="role" data-i18n="aud.b.role">Platform / SRE</div>
+      <h3 data-i18n="aud.b.h">演習設計を、 1 画面で。</h3>
+      <p data-i18n="aud.b.p">チームごとに隔離された AWS 環境を自動で配り、 採点 / 進捗 / Console アクセス を集約。 1 週間かかっていた準備が半日に短縮。 facilitator の負荷も下げる。</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud" target="_blank" rel="noopener noreferrer"><span data-i18n="aud.b.more">運営ガイド</span> ›</a>
+    </div>
+    <div class="col">
+      <div class="role" data-i18n="aud.c.role">エンジニア / 個人参加</div>
+      <h3 data-i18n="aud.c.h">実戦で、腕を上げる。</h3>
+      <p data-i18n="aud.c.p">本物の AWS で問題を解き、 ランクを上げる。 OSS なので、 勉強会 / 学校 / コミュニティが 自前 AWS 環境で無料開催することも可能。</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloudChallenge#readme" target="_blank" rel="noopener noreferrer"><span data-i18n="aud.c.more">問題を作る</span> ›</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="onboard">
+  <div class="wrap">
+    <div class="onboard-layout">
+      <div>
+        <div class="eyebrow" data-i18n="onboard.eyebrow">オンボーディング</div>
+        <h2 data-i18n="onboard.h2">AWS との接続は、3 ステップ。</h2>
+        <p class="lead" data-i18n="onboard.lead">「自分のアカウントに何をされるか」をなくす設計。最小権限の AssumeRole 一本だけで、すべてが動く。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">01</div>
+          <h4 data-i18n="onboard.s1.h">テンプレートを、1 度だけ。</h4>
+          <p data-i18n="onboard.s1.p">CloudFormation を自分のアカウントに 1 回デプロイ。それで IAM Role が用意される。</p>
+          <div class="step-icon"><svg viewBox="0 0 64 64" width="64" height="64"><path d="M21 43H17a10 10 0 0 1 0-20 15 15 0 0 1 28-5 12 12 0 0 1 2 24h-5" fill="none" stroke="#a855f7" stroke-width="3"/><path d="M32 48V29m0 0-8 8m8-8 8 8" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h4 data-i18n="onboard.s2.h">ExternalId で、固く守る。</h4>
+          <p data-i18n="onboard.s2.p">TenkaCloud は固有の ExternalId 付きでしか、その Role を引き受けられない。Role ARN だけでは入れない。</p>
+          <div class="step-icon"><svg viewBox="0 0 64 64" width="64" height="64"><circle cx="32" cy="23" r="10" fill="none" stroke="#22c55e" stroke-width="4"/><path d="M15 53c3-11 10-17 17-17s14 6 17 17" fill="none" stroke="#07111f" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="23" r="16" fill="none" stroke="#a855f7" stroke-width="2" opacity=".45"/></svg></div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h4 data-i18n="onboard.s3.h">ポータルから、競技へ。</h4>
+          <p data-i18n="onboard.s3.p">ログインすれば、問題環境が自動で立ち上がる。エンドポイントと点数は、その瞬間から見える。</p>
+          <div class="step-icon"><svg viewBox="0 0 64 64" width="64" height="64"><rect x="12" y="14" width="40" height="31" rx="3" fill="none" stroke="#07111f" stroke-width="3"/><path d="M20 50h24" stroke="#07111f" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="30" r="8" fill="none" stroke="#2563eb" stroke-width="3"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="trust">
+      <div class="copy">
+        <div class="eyebrow" data-i18n="trust.eyebrow">セキュリティ</div>
+        <h2 data-i18n="trust.h2">あなたの AWS は、ずっとあなたのもの。</h2>
+        <ul id="trust-bullets"></ul>
+      </div>
+      <div class="flow sso-preview">
+        <div class="credential-title">SSO Credentials</div>
+        <div class="credential-sub" data-i18n="preview.sso.desc">AWS Console にワンクリックで federate ログイン。 参加者個人の AWS アカウントは不要 — 主催者が用意した環境へ、 ポータルから安全にアクセスできます。</div>
+        <div class="sso-alert">
+          <b data-i18n="preview.sso.howto">使い方</b>
+          <span data-i18n="preview.sso.body">下のボタンを押すと新しいタブで AWS Console (CloudFormation スタック画面) が自動でログイン状態で開きます。session の TTL は 1 時間です。</span>
+        </div>
+        <div class="credential-list">
+          <div class="credential-row">
+            <div class="credential-row-head">
+              <code>microservice-migration-battle</code>
+              <button type="button"><span data-i18n="preview.sso.button">AWS Console を開く</span> ↗</button>
+            </div>
+            <div class="credential-kv">
+              <div><span>AWS Account</span><code>c7782015332</code></div>
+              <div><span>Region</span><strong>us-east-1</strong></div>
+            </div>
+          </div>
+          <div class="credential-row">
+            <div class="credential-row-head">
+              <code>hello-world</code>
+              <button type="button"><span data-i18n="preview.sso.button">AWS Console を開く</span> ↗</button>
+            </div>
+            <div class="credential-kv">
+              <div><span>AWS Account</span><code>677c9285832</code></div>
+              <div><span>Region</span><strong>ap-northeast-1</strong></div>
+            </div>
+          </div>
+          <div class="credential-row">
+            <div class="credential-row-head">
+              <code>hello-world-battle</code>
+              <button type="button"><span data-i18n="preview.sso.button">AWS Console を開く</span> ↗</button>
+            </div>
+            <div class="credential-kv">
+              <div><span>AWS Account</span><code>677c9285832</code></div>
+              <div><span>Region</span><strong>us-east-1</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="stats" id="stats-grid"></div>
+  </div>
+</section>
+
+<section id="extend">
+  <div class="wrap audience-intro">
+    <div class="eyebrow" data-i18n="extend.eyebrow">問題は、増やせる</div>
+    <h2 data-i18n="extend.h2">足りない問題は、自分で作ればいい。</h2>
+    <p class="lead" data-i18n="extend.lead">問題カタログは <a href="https://github.com/susumutomita/TenkaCloudChallenge" target="_blank" rel="noopener noreferrer">TenkaCloudChallenge</a> リポジトリで完全に開かれていて、 metadata.json + template.yaml の 2 ファイルを書けば 1 問追加できます。 Claude Code 等のコーディングエージェント向けに 問題作成 skill (<code>new-problem</code>) も同梱されているので、 「こういう問題を作りたい」 とアイデアを話すだけで、 初めてでも 1 問が形になります。</p>
+    <p class="lead" data-i18n="extend.starter">スターターカタログは <strong>ready 5 問 + draft 2 問 + 1 イベント bundle</strong> (= 1 Challenge + 2 Battles を 60〜90 分で回す <a href="https://github.com/susumutomita/TenkaCloudChallenge/blob/main/bundles/starter-event.json" target="_blank" rel="noopener noreferrer"><code>starter-event</code></a>)。 CCoE / JAWS-UG meetup で 「今日これ流せばいい」 が即決できる credible なラインナップです。</p>
+    <div class="extend-cta">
+      <a class="more" href="https://github.com/susumutomita/TenkaCloudChallenge#readme" target="_blank" rel="noopener noreferrer"><span data-i18n="extend.cta1">問題カタログを見る</span> ›</a>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloudChallenge/blob/main/.claude/skills/new-problem/SKILL.md#new-problem--scaffold-a-tenkacloudchallenge-problem" target="_blank" rel="noopener noreferrer"><span data-i18n="extend.cta2">new-problem skill</span> ›</a>
+    </div>
+  </div>
+</section>
+
+<section id="offerings" class="alt">
+  <div class="wrap audience-intro">
+    <div class="eyebrow" data-i18n="offerings.eyebrow">Commercial offerings</div>
+    <h2 data-i18n="offerings.h2">Four productized offerings — formally documented.</h2>
+    <p class="lead" data-i18n="offerings.lead">The OSS platform stays free under Apache 2.0. For organizations that want setup, live operations, or a program run for them, we offer four productized packages. Each has a fixed shape — scope, deliverables, exclusions, delivery model — written up in <a href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/commercial/PACKAGES.html" target="_blank" rel="noopener noreferrer">PACKAGES.html</a>.</p>
+  </div>
+  <div class="aud">
+    <div class="col">
+      <div class="role" data-i18n="offerings.a.role">Hosted Event</div>
+      <h3 data-i18n="offerings.a.h">One operated drill, end to end.</h3>
+      <p data-i18n="offerings.a.p">A 1-3 day cloud drill on the public OSS catalog, run by us. Event design, deploy into your AWS account, dry run, live facilitation, post-event report. <strong>Per-event fixed price</strong>.</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/commercial/PACKAGES.html#hosted-event" target="_blank" rel="noopener noreferrer"><span data-i18n="offerings.a.more">Scope &amp; deliverables</span> ›</a>
+    </div>
+    <div class="col">
+      <div class="role" data-i18n="offerings.b.role">Annual Arena</div>
+      <h3 data-i18n="offerings.b.h">A 12-month program with KPIs.</h3>
+      <p data-i18n="offerings.b.p">4-6 operated events per year for one org, a growing private problem catalog (you own the IP), and a KPI dashboard for HR / L&amp;D. <strong>Annual base + per-event variable</strong>.</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/commercial/PACKAGES.html#annual-arena" target="_blank" rel="noopener noreferrer"><span data-i18n="offerings.b.more">Scope &amp; deliverables</span> ›</a>
+    </div>
+    <div class="col">
+      <div class="role" data-i18n="offerings.c.role">Custom Problem</div>
+      <h3 data-i18n="offerings.c.h">A drill that matches your stack.</h3>
+      <p data-i18n="offerings.c.p">One problem authored to your scenario — past incident or capability gap. Scenario interview, build, dry-run, facilitator notes. <strong>Sanitized scenario only — never production access. Per-problem fixed price.</strong></p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/commercial/PACKAGES.html#custom-problem" target="_blank" rel="noopener noreferrer"><span data-i18n="offerings.c.more">Scope &amp; deliverables</span> ›</a>
+    </div>
+    <div class="col">
+      <div class="role" data-i18n="offerings.d.role">CCoE Enablement (add-on)</div>
+      <h3 data-i18n="offerings.d.h">Advisory, sold separately.</h3>
+      <p data-i18n="offerings.d.p">A monthly retainer for operating-model / training-roadmap work. <strong>Never bundled</strong> into the three offerings above, so events stay productized. If you want both, that is two line items.</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/commercial/PACKAGES.html#ccoe-enablement" target="_blank" rel="noopener noreferrer"><span data-i18n="offerings.d.more">Scope &amp; deliverables</span> ›</a>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="wrap audience-intro">
+    <div class="eyebrow" data-i18n="community.eyebrow">Join the community</div>
+    <h2 data-i18n="community.h2">Pick one of six roles. Ship one starter task.</h2>
+    <p class="lead" data-i18n="community.lead">TenkaCloud's moat is the <strong>community problem catalog</strong>, not only the deploy runtime. You do not need to be personally onboarded by the maintainer — choose a role, follow its 30-minute first task, and you are a recognized contributor.</p>
+  </div>
+  <div class="aud">
+    <div class="col">
+      <div class="role" data-i18n="community.tester.role">Tester</div>
+      <h3 data-i18n="community.tester.h">Play the problems. File the papercuts.</h3>
+      <p data-i18n="community.tester.p">Follow a 30-minute playtest protocol on one problem, then file a structured feedback issue. No CDK / TypeScript needed.</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/community/PLAYTEST-CHECKLIST.html" target="_blank" rel="noopener noreferrer"><span data-i18n="community.tester.cta">Playtest checklist</span> ›</a>
+    </div>
+    <div class="col">
+      <div class="role" data-i18n="community.author.role">Problem Author</div>
+      <h3 data-i18n="community.author.h">Ship a new problem.</h3>
+      <p data-i18n="community.author.p">Two files (metadata.json + template.yaml) and you have a problem. The <code>/new-problem</code> Claude Code skill onboards you in 30 minutes.</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/problems/AUTHORING.html" target="_blank" rel="noopener noreferrer"><span data-i18n="community.author.cta">Authoring guide</span> ›</a>
+    </div>
+    <div class="col">
+      <div class="role" data-i18n="community.reviewer.role">Scenario Reviewer</div>
+      <h3 data-i18n="community.reviewer.h">Score PRs against a rubric.</h3>
+      <p data-i18n="community.reviewer.p">Six checks: scoring fairness, hint progression, no skip-by-luck, time-to-solve estimate, scenario realism, template security.</p>
+      <a class="more" href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/community/PROBLEM-REVIEW-CHECKLIST.html" target="_blank" rel="noopener noreferrer"><span data-i18n="community.reviewer.cta">Review checklist</span> ›</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top: 1.2rem; text-align: center;">
+    <a class="more" href="https://github.com/susumutomita/TenkaCloud/blob/main/docs/community/ONBOARDING.html" target="_blank" rel="noopener noreferrer"><span data-i18n="community.more">See all 6 roles (Tester / Problem Author / Scenario Reviewer / Event Facilitator / Platform Contributor / Sponsor-Requester)</span> ›</a>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="pricing-head">
+      <div class="eyebrow" data-i18n="pricing.eyebrow">料金</div>
+      <h2 data-i18n="pricing.h2">イベント規模に合わせて。</h2>
+      <p data-i18n="pricing.p">プラットフォーム本体は Apache 2.0 の OSS なので、 <strong>自前 AWS アカウントに deploy して開催すれば無料</strong>。 構築や当日運営を任せたい方向けに、 規模に合わせた有料プランをご用意しています。</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier" data-i18n="pricing.starter.tier">Starter</div>
+        <div class="pricing-price">
+          <span data-i18n="pricing.starter.price">50万円</span><span class="pricing-unit" data-i18n="pricing.starter.unit">/ 回</span>
+        </div>
+        <div class="pricing-scope" data-i18n="pricing.starter.scope">お試し (〜 2 チーム)</div>
+        <p class="pricing-sub" data-i18n="pricing.starter.note">まずは小規模で運営代行を試したい方向け。</p>
+        <ul class="pricing-list">
+          <li data-i18n="pricing.starter.f1">2 チームまでの同時開催</li>
+          <li data-i18n="pricing.starter.f2">deploy / 当日進行サポート</li>
+          <li data-i18n="pricing.starter.f3">公開問題セットから選定</li>
+        </ul>
+        <p class="pricing-fineprint" data-i18n="pricing.starter.fineprint">※ AWS account はお客様側でご用意ください。</p>
+        <a class="pricing-cta secondary" href="https://github.com/susumutomita/TenkaCloud/discussions" target="_blank" rel="noopener noreferrer"><span data-i18n="pricing.starter.cta">お見積もりを依頼</span> →</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-tier" data-i18n="pricing.hosted.tier">Hosted</div>
+        <div class="pricing-price">
+          <span data-i18n="pricing.hosted.price">150万円</span><span class="pricing-unit" data-i18n="pricing.hosted.unit">/ 回</span>
+        </div>
+        <div class="pricing-scope" data-i18n="pricing.hosted.scope">5 チームまで (〜 20 人)</div>
+        <p class="pricing-sub" data-i18n="pricing.hosted.note">構築から当日進行まで、 運営を丸ごと代行します。</p>
+        <ul class="pricing-list">
+          <li data-i18n="pricing.hosted.f1">AWS account 準備 / deploy 支援</li>
+          <li data-i18n="pricing.hosted.f2">当日の進行 + on-call / Red Team 役</li>
+          <li data-i18n="pricing.hosted.f3">事後の振り返りレポート (= 採点履歴 / 攻撃可視化)</li>
+          <li data-i18n="pricing.hosted.f4">問題セットの選定</li>
+        </ul>
+        <p class="pricing-fineprint" data-i18n="pricing.hosted.fineprint">※ AWS account はお客様側でご用意ください。 こちらでご用意する場合は別途お見積もり。</p>
+        <a class="pricing-cta primary" href="https://github.com/susumutomita/TenkaCloud/discussions" target="_blank" rel="noopener noreferrer"><span data-i18n="pricing.hosted.cta">お見積もりを依頼</span> →</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier" data-i18n="pricing.enterprise.tier">Annual Arena</div>
+        <div class="pricing-price">
+          <span data-i18n="pricing.enterprise.price">600万円</span><span class="pricing-unit" data-i18n="pricing.enterprise.unit">/ 年</span>
+        </div>
+        <div class="pricing-scope" data-i18n="pricing.enterprise.scope">年間契約 (= 年 4 回のイベント開催を代行)</div>
+        <p class="pricing-sub" data-i18n="pricing.enterprise.note">新卒教育 / 内製化推進 / CCoE プログラムなど、 同じプラットフォームで <strong>年 4 回イベントを開催したい</strong> 組織向け。</p>
+        <ul class="pricing-list">
+          <li data-i18n="pricing.enterprise.f1">複数開催 (= 年 4 回、 部門別 / 期別)</li>
+          <li data-i18n="pricing.enterprise.f2">公開問題カタログから 入門 → 中級 → 上級 の learning path 提案 + facilitator 運営手順書テンプレート</li>
+          <li data-i18n="pricing.enterprise.f3">事後レポート PDF (= portal の採点履歴 / チーム別進捗 / 攻撃可視化 を整理、 1 イベント 1 部)</li>
+        </ul>
+        <p class="pricing-fineprint" data-i18n="pricing.enterprise.fineprint">※ 規模 / 内容に応じて見積もり。 AWS account はお客様側でご用意ください。</p>
+        <a class="pricing-cta secondary" href="https://github.com/susumutomita/TenkaCloud/discussions" target="_blank" rel="noopener noreferrer"><span data-i18n="pricing.enterprise.cta">プログラムについて相談</span> →</a>
+      </div>
+    </div>
+    <p class="pricing-tail" data-i18n="pricing.tail"><strong>カスタム問題の追加開発</strong>は要件定義から実装まで通常の受託開発と同じスコープになるため、 別途お見積もりします。 それ以上の規模 / 特別要件も含めて、 <a href="#contact">お問い合わせ</a> ください。</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="ent-cta">
+      <div class="eyebrow" data-i18n="ent.eyebrow">どのプランがよいか分からない</div>
+      <h2 data-i18n="ent.h2">まずは話してみませんか。</h2>
+      <p data-i18n="ent.p">クラウド人材育成プログラム、 内製化推進、 継続的な AWS 演習 — 規模 / 期間 / 参加者像を聞いた上で、 適切なプランを一緒に決めます。</p>
+      <form id="contact-form" class="contact-form" onsubmit="return submitContactForm(event);">
+      <!-- Honeypot: hidden from users; bots that fill it are silently rejected. -->
+      <input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+      <div class="contact-row">
+        <label class="contact-field">
+          <span class="contact-label" data-i18n="contact.field_name">お名前 <em>*</em></span>
+          <input type="text" name="name" required maxlength="80" autocomplete="name" />
+        </label>
+        <label class="contact-field">
+          <span class="contact-label" data-i18n="contact.field_company">所属組織</span>
+          <input type="text" name="company" maxlength="120" autocomplete="organization" />
+        </label>
+      </div>
+      <div class="contact-row">
+        <label class="contact-field">
+          <span class="contact-label" data-i18n="contact.field_email">メールアドレス <em>*</em></span>
+          <input type="email" name="email" required maxlength="120" autocomplete="email" />
+        </label>
+        <label class="contact-field">
+          <span class="contact-label" data-i18n="contact.field_plan">興味のあるプラン</span>
+          <select name="plan">
+            <option value="" data-i18n="contact.plan_unknown">未定 / 相談したい</option>
+            <option value="starter">Starter (50万円 / 回)</option>
+            <option value="hosted">Hosted Event (150万円 / 回)</option>
+            <option value="annual">Annual Arena (600万円 / 年)</option>
+            <option value="custom-problem" data-i18n="contact.plan_custom_problem">独自問題の追加開発</option>
+            <option value="oss" data-i18n="contact.plan_oss">OSS 自己ホストの相談</option>
+            <option value="other" data-i18n="contact.plan_other">その他 / カスタム</option>
+          </select>
+        </label>
+      </div>
+      <label class="contact-field">
+        <span class="contact-label" data-i18n="contact.field_scale">想定規模 / 開催時期</span>
+        <input type="text" name="scale" maxlength="120" placeholder="例: 20 人 / 2026 年 Q3" />
+      </label>
+      <label class="contact-field">
+        <span class="contact-label" data-i18n="contact.field_message">メッセージ</span>
+        <textarea name="message" rows="4" maxlength="2000" data-i18n-attr-placeholder="contact.field_message_placeholder" placeholder="解決したい課題、 参加者の技術レベル、 過去の研修の振り返り 等、 何でもお書きください。"></textarea>
+      </label>
+      <p class="contact-fineprint" data-i18n="contact.fineprint">送信先: TenkaCloud 運営。 ご記入いただいた情報は、 お問い合わせ対応と見積もり提示のみに利用します (= <a href="./privacy.html">プライバシーポリシー</a>)。</p>
+      <div class="btns">
+        <button class="btn-primary" type="submit"><span data-i18n="contact.submit">送信する</span> →</button>
+        <a class="btn-ghost" href="https://github.com/susumutomita/TenkaCloud" target="_blank" rel="noopener noreferrer"><span data-i18n="ent.cta2">GitHub を見る</span> →</a>
+      </div>
+      <p id="contact-feedback" class="contact-feedback" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand">TenkaCloud</div>
+      <div class="tag" data-i18n="footer.tag">AWS の実環境で競う、オープンソースのクラウド競技基盤。Apache 2.0。</div>
+    </div>
+    <div>
+      <h5>Product</h5>
+      <a href="#modes" data-i18n="footer.p0">概要</a>
+      <a href="https://github.com/susumutomita/TenkaCloudChallenge" target="_blank" rel="noopener noreferrer" data-i18n="footer.p1">問題カタログ</a>
+      <a data-i18n="footer.p2">参加者ポータル</a>
+      <a data-i18n="footer.p3">運営コンソール</a>
+    </div>
+    <div>
+      <h5 data-i18n="footer.usage">使い方</h5>
+      <a href="https://github.com/susumutomita/TenkaCloud#readme" target="_blank" rel="noopener noreferrer" data-i18n="footer.u0">はじめる</a>
+      <a href="https://github.com/susumutomita/TenkaCloud#readme" target="_blank" rel="noopener noreferrer" data-i18n="footer.u1">ドキュメント</a>
+      <a href="https://github.com/susumutomita/TenkaCloud#readme" target="_blank" rel="noopener noreferrer" data-i18n="footer.u2">運用ガイド</a>
+    </div>
+    <div>
+      <h5>Resources</h5>
+      <a href="https://github.com/susumutomita/TenkaCloud#readme" target="_blank" rel="noopener noreferrer" data-i18n="footer.r0">ドキュメント</a>
+      <a href="https://github.com/susumutomita/TenkaCloud/tree/main/docs/architecture" target="_blank" rel="noopener noreferrer" data-i18n="footer.r1">アーキテクチャ</a>
+      <a href="https://github.com/susumutomita/TenkaCloud/releases" target="_blank" rel="noopener noreferrer" data-i18n="footer.r2">Changelog</a>
+    </div>
+    <div>
+      <h5>Community</h5>
+      <a href="https://github.com/susumutomita/TenkaCloud" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://github.com/susumutomita/TenkaCloud/discussions" target="_blank" rel="noopener noreferrer">Discussions</a>
+      <a href="https://github.com/susumutomita/TenkaCloud/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      <a href="https://github.com/susumutomita/TenkaCloud/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribute</a>
+    </div>
+    <p class="disclaimer" data-i18n="footer.disclaimer">TenkaCloud は独立した OSS プロジェクトであり、 Amazon Web Services, Inc. またはその関連会社による提供・後援・承認を受けたものではありません。 AWS および関連する名称は Amazon.com, Inc. またはその関連会社の商標です。</p>
+    <div class="legal">
+      <span data-i18n="footer.legal">© 2026 合同会社BULL · TenkaCloud · Apache License 2.0</span>
+      <span class="footer-legal-links">
+        <a href="./privacy.html"><span data-i18n="footer.privacy">プライバシーポリシー</span></a> ·
+        <a href="./terms.html"><span data-i18n="footer.terms">利用規約</span></a> ·
+        <a href="./legal.html"><span data-i18n="footer.tokushoho">特定商取引法に基づく表記</span></a>
+      </span>
+      <span>v0.2.0 · ja · en</span>
+    </div>
+  </div>
+</footer>
+
+<script src="./app.js" defer></script>
+
+</body>
+</html>

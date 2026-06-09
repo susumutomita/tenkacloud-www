@@ -1,0 +1,23 @@
+node_modules/
+dist/
+coverage/
+
+# Cloudflare / wrangler
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# stray tool backups
+*.bak
+
+# Terraform (state is managed by Terraform Cloud; never commit local state)
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+terraform.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json

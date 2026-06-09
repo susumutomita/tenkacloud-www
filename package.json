@@ -1,0 +1,25 @@
+{
+  "name": "tenkacloud-www",
+  "private": true,
+  "type": "module",
+  "description": "TenkaCloud marketing site (Cloudflare Pages) + contact backend (Pages Function). Infra via Terraform Cloud.",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "tf:fmt": "terraform -chdir=terraform fmt -check -recursive",
+    "tf:validate": "terraform -chdir=terraform init -backend=false && terraform -chdir=terraform validate",
+    "check": "biome check . && tsc --noEmit && vitest run"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "wrangler": "^4.20.0"
+  },
+  "trustedDependencies": []
+}

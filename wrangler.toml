@@ -1,0 +1,15 @@
+name = "tenkacloud-www"
+compatibility_date = "2026-06-01"
+pages_build_output_dir = "public"
+
+# Email Workers binding used by functions/api/contact.ts. Declaring it here lets
+# `wrangler pages dev` load the `cloudflare:email` module (local send is
+# simulated/logged, not actually delivered). In PRODUCTION the binding and the
+# CONTACT_FROM / CONTACT_TO vars are managed by Terraform on the Pages project
+# (see terraform/ and README.md), so they are intentionally NOT hardcoded here.
+[[send_email]]
+name = "CONTACT_MAILER"
+
+# For local testing of real field values, put CONTACT_FROM / CONTACT_TO in a
+# git-ignored `.dev.vars` (see .dev.vars.example). The dev server starts without
+# them — they are only read when a form is submitted.

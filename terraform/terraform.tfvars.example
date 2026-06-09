@@ -1,0 +1,13 @@
+# Example variables. For Terraform Cloud, set these as workspace variables
+# (TF_VAR_* or plain Terraform variables) instead of a committed tfvars file.
+# Secrets (CLOUDFLARE_API_TOKEN) go in the workspace ENV vars (sensitive), never here.
+
+cloudflare_account_id = "your-cloudflare-account-id"
+contact_to            = "your-gmail@gmail.com"
+
+# Optional overrides:
+# zone_name          = "tenkacloud.com"
+# pages_project_name = "tenkacloud-www"
+# contact_from       = "contact@tenkacloud.com"
+# github_owner       = "susumutomita"
+# github_repo        = "tenkacloud-www"
