@@ -1,0 +1,4 @@
+# Copy to `.dev.vars` (git-ignored) for local `wrangler pages dev` testing.
+# Production values are managed by Terraform on the Cloudflare Pages project.
+CONTACT_FROM="contact@tenkacloud.com"
+CONTACT_TO="your-gmail@gmail.com"

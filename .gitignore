@@ -6,6 +6,10 @@ coverage/
 .wrangler/
 .dev.vars
 .dev.vars.*
+!.dev.vars.example
+
+# stray tool backups
+*.bak
 
 # Terraform (state is managed by Terraform Cloud; never commit local state)
 .terraform/
