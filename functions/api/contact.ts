@@ -35,10 +35,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       raw = (await request.json()) as Record<string, unknown>;
     } else {
       const form = await request.formData();
-      raw = Object.fromEntries(form as unknown as Iterable<[string, FormDataEntryValue]>) as Record<
-        string,
-        unknown
-      >;
+      raw = Object.fromEntries(form as unknown as Iterable<[string, FormDataEntryValue]>);
     }
   } catch {
     return json({ success: false, message: "リクエストの形式が不正です。" }, 400);

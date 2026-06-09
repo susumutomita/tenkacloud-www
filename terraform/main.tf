@@ -4,6 +4,15 @@ data "cloudflare_zone" "this" {
   name       = var.zone_name
 }
 
+locals {
+  # Injected into both the production and preview Pages deployments and read by
+  # functions/api/contact.ts.
+  pages_env = {
+    CONTACT_FROM = var.contact_from
+    CONTACT_TO   = var.contact_to
+  }
+}
+
 # --- Cloudflare Pages project: the static LP + Pages Functions ----------------
 resource "cloudflare_pages_project" "www" {
   account_id        = var.cloudflare_account_id
@@ -28,36 +37,23 @@ resource "cloudflare_pages_project" "www" {
 
   deployment_configs {
     production {
-      compatibility_date = "2026-06-01"
-      environment_variables = {
-        CONTACT_FROM = var.contact_from
-        CONTACT_TO   = var.contact_to
-      }
+      compatibility_date    = "2026-06-01"
+      environment_variables = local.pages_env
     }
     preview {
-      compatibility_date = "2026-06-01"
-      environment_variables = {
-        CONTACT_FROM = var.contact_from
-        CONTACT_TO   = var.contact_to
-      }
+      compatibility_date    = "2026-06-01"
+      environment_variables = local.pages_env
     }
   }
 }
 
-# Custom domain: tenkacloud.com -> the Pages project.
+# Custom domain: tenkacloud.com -> the Pages project. For a zone on the same
+# Cloudflare account, adding the domain here provisions the apex DNS record
+# automatically — a separate cloudflare_record would collide with it.
 resource "cloudflare_pages_domain" "apex" {
   account_id   = var.cloudflare_account_id
   project_name = cloudflare_pages_project.www.name
   domain       = var.zone_name
-}
-
-resource "cloudflare_record" "apex" {
-  zone_id = data.cloudflare_zone.this.id
-  name    = "@"
-  type    = "CNAME"
-  content = "${cloudflare_pages_project.www.name}.pages.dev"
-  proxied = true
-  comment = "Apex -> Cloudflare Pages (tenkacloud-www)"
 }
 
 # --- Email Routing: lets the Worker forward inquiries to your Gmail -----------
