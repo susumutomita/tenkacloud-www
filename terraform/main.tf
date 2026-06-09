@@ -28,14 +28,14 @@ resource "cloudflare_pages_project" "www" {
 
   deployment_configs {
     production {
-      compatibility_date = "2025-01-01"
+      compatibility_date = "2026-06-01"
       environment_variables = {
         CONTACT_FROM = var.contact_from
         CONTACT_TO   = var.contact_to
       }
     }
     preview {
-      compatibility_date = "2025-01-01"
+      compatibility_date = "2026-06-01"
       environment_variables = {
         CONTACT_FROM = var.contact_from
         CONTACT_TO   = var.contact_to

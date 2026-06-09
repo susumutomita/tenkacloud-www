@@ -44,4 +44,4 @@ This file follows the [llms.txt](https://llmstxt.org/) convention. Links point t
 
 - [GitHub repository](https://github.com/susumutomita/TenkaCloud): source of truth for code, issues, and discussions
 - [GitHub Discussions](https://github.com/susumutomita/TenkaCloud/discussions): questions and design discussion
-- [Landing page](https://susumutomita.github.io/TenkaCloud/): product description and live participant-portal demo
+- [Landing page](https://tenkacloud.com/): product description and live participant-portal demo

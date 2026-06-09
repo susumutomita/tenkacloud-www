@@ -1,5 +1,5 @@
 name = "tenkacloud-www"
-compatibility_date = "2025-01-01"
+compatibility_date = "2026-06-01"
 pages_build_output_dir = "public"
 
 # Email Workers binding used by functions/api/contact.ts. Declaring it here lets

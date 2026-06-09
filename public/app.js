@@ -642,6 +642,11 @@
       // 全 i18n key で innerHTML 経由で render する (= textContent と違って HTML が escape されない)。
       el.innerHTML = dict[key];
     });
+    // Attribute-level i18n: localize input/textarea placeholders.
+    document.querySelectorAll("[data-i18n-attr-placeholder]").forEach((el) => {
+      var pkey = el.getAttribute("data-i18n-attr-placeholder");
+      if (dict[pkey] != null) el.setAttribute("placeholder", dict[pkey]);
+    });
     document.querySelectorAll(".nav-right .lang").forEach((btn) => {
       var isActive = btn.getAttribute("data-lang") === lang;
       btn.classList.toggle("on", isActive);
