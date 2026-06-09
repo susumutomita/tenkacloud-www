@@ -273,6 +273,13 @@
       "contact.fineprint":
         '送信先: 合同会社BULL (TenkaCloud 運営)。 ご記入いただいた情報は、 お問い合わせ対応と見積もり提示のみに利用します (= <a href="./privacy.html">プライバシーポリシー</a>)。',
       "contact.submit": "送信する",
+      "contact.fb_sending": "送信中…",
+      "contact.fb_sent": "送信しました。 担当者よりご連絡します。 ご連絡お待ちしています。",
+      "contact.fb_bot": "送信しました。 ご連絡お待ちしています。",
+      "contact.fb_required": "お名前とメールアドレスは必須です。",
+      "contact.fb_failed_prefix": "送信に失敗しました。 お手数ですが、 こちらの ",
+      "contact.fb_failed_link": "GitHub Discussions",
+      "contact.fb_failed_suffix": " からご連絡ください。",
 
       "footer.tag": "AWS を題材にしたクラウド実戦演習を開催するための OSS ツール。 Apache 2.0。",
       "footer.disclaimer":
@@ -566,6 +573,13 @@
       "contact.fineprint":
         'Sent to: BULL LLC (operator of TenkaCloud). Your input is used only for replying and quoting (see <a href="./privacy.en.html">Privacy Policy</a>).',
       "contact.submit": "Send",
+      "contact.fb_sending": "Sending…",
+      "contact.fb_sent": "Thanks — your message was sent. We'll get back to you soon.",
+      "contact.fb_bot": "Thanks — your message was sent.",
+      "contact.fb_required": "Name and email are required.",
+      "contact.fb_failed_prefix": "Sending failed. Please reach us via ",
+      "contact.fb_failed_link": "GitHub Discussions",
+      "contact.fb_failed_suffix": " instead.",
 
       "footer.tag":
         "An open-source tool for hosting hands-on cloud drills on real AWS. Apache 2.0.",
@@ -757,6 +771,12 @@
     return `https://github.com/susumutomita/TenkaCloud/discussions/new?category=general&body=${body}`;
   }
 
+  // Localize contact feedback via the LP's i18n dict, keyed off <html lang>.
+  function t(key) {
+    var lang = document.documentElement.lang === "en" ? "en" : "ja";
+    return (I18N[lang] && I18N[lang][key]) || (I18N.ja && I18N.ja[key]) || key;
+  }
+
   function setFeedback(feedback, kind, text) {
     feedback.hidden = false;
     feedback.className = "contact-feedback " + kind;
@@ -770,17 +790,17 @@
     var feedback = document.getElementById("contact-feedback");
     // Honeypot: bots fill the hidden field. Pretend success without sending.
     if (input.botcheck) {
-      setFeedback(feedback, "success", "送信しました。 ご連絡お待ちしています。");
+      setFeedback(feedback, "success", t("contact.fb_bot"));
       form.reset();
       return false;
     }
     if (!input.name || !input.email) {
-      setFeedback(feedback, "error", "お名前とメールアドレスは必須です。");
+      setFeedback(feedback, "error", t("contact.fb_required"));
       return false;
     }
     var submitBtn = form.querySelector('button[type="submit"]');
     if (submitBtn) submitBtn.disabled = true;
-    setFeedback(feedback, "success", "送信中…");
+    setFeedback(feedback, "success", t("contact.fb_sending"));
     fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -789,11 +809,7 @@
       .then((res) => res.json().catch(() => ({ success: res.ok })))
       .then((data) => {
         if (data && data.success) {
-          setFeedback(
-            feedback,
-            "success",
-            "送信しました。 担当者よりご連絡します。 ご連絡お待ちしています。",
-          );
+          setFeedback(feedback, "success", t("contact.fb_sent"));
           form.reset();
         } else {
           throw new Error((data && data.message) || "submit failed");
@@ -804,16 +820,16 @@
         // as a property is not parsed as HTML, so it is XSS-safe.
         feedback.hidden = false;
         feedback.className = "contact-feedback error";
-        feedback.textContent = "送信に失敗しました。 お手数ですが、 こちらの ";
+        feedback.textContent = t("contact.fb_failed_prefix");
         var link = document.createElement("a");
         link.href = discussionFallbackUrl(input);
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.style.color = "inherit";
         link.style.textDecoration = "underline";
-        link.textContent = "GitHub Discussions";
+        link.textContent = t("contact.fb_failed_link");
         feedback.appendChild(link);
-        feedback.appendChild(document.createTextNode(" からご連絡ください。"));
+        feedback.appendChild(document.createTextNode(t("contact.fb_failed_suffix")));
       })
       .finally(() => {
         if (submitBtn) submitBtn.disabled = false;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildEmail, validateContact } from "../functions/_lib/validate";
+import { buildEmail, buildRawMime, validateContact } from "../functions/_lib/validate";
 
 describe("validateContact", () => {
   it("should reject bot submissions via the honeypot", () => {
@@ -44,6 +44,37 @@ describe("validateContact", () => {
     const result = validateContact({ name: "a".repeat(200), email: "taro@example.com" });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.value.name.length).toBe(80);
+  });
+
+  it("should strip CR/LF and control chars (mail-header-injection guard)", () => {
+    const result = validateContact({
+      name: "Taro\r\nBcc: evil@example.com",
+      email: "taro@example.com",
+    });
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value.name).not.toMatch(/[\r\n]/);
+      expect(result.value.name).toContain("Taro");
+    }
+  });
+});
+
+describe("buildRawMime", () => {
+  it("should encode the subject as a UTF-8 word and base64 the body", () => {
+    const mime = buildRawMime({
+      from: "contact@tenkacloud.com",
+      to: "you@gmail.com",
+      replyTo: "taro@example.com",
+      subject: "お問い合わせ",
+      text: "本文",
+    });
+    expect(mime).toContain("From: contact@tenkacloud.com");
+    expect(mime).toContain("To: you@gmail.com");
+    expect(mime).toContain("Reply-To: taro@example.com");
+    expect(mime).toContain("Subject: =?UTF-8?B?");
+    expect(mime).toContain("Content-Transfer-Encoding: base64");
+    // header/body separated by a blank CRLF line
+    expect(mime).toContain("\r\n\r\n");
   });
 });
 

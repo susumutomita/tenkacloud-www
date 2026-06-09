@@ -10,8 +10,7 @@
 //   - CONTACT_TO     : Email Routing destination (your Gmail), must be verified
 
 import { EmailMessage } from "cloudflare:email";
-import { createMimeMessage } from "mimetext";
-import { buildEmail, validateContact } from "../_lib/validate";
+import { buildEmail, buildRawMime, validateContact } from "../_lib/validate";
 
 interface Env {
   CONTACT_MAILER: { send(message: EmailMessage): Promise<void> };
@@ -54,16 +53,16 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   const origin = request.headers.get("origin") ?? new URL(request.url).origin;
   const { subject, text } = buildEmail(result.value, origin);
-
-  const mime = createMimeMessage();
-  mime.setSender({ name: "TenkaCloud LP", addr: env.CONTACT_FROM });
-  mime.setRecipient(env.CONTACT_TO);
-  mime.setSubject(subject);
-  mime.setHeader("Reply-To", result.value.email);
-  mime.addMessage({ contentType: "text/plain", data: text });
+  const mime = buildRawMime({
+    from: env.CONTACT_FROM,
+    to: env.CONTACT_TO,
+    replyTo: result.value.email,
+    subject,
+    text,
+  });
 
   try {
-    await env.CONTACT_MAILER.send(new EmailMessage(env.CONTACT_FROM, env.CONTACT_TO, mime.asRaw()));
+    await env.CONTACT_MAILER.send(new EmailMessage(env.CONTACT_FROM, env.CONTACT_TO, mime));
   } catch {
     return json({ success: false, message: "送信処理に失敗しました。" }, 502);
   }
