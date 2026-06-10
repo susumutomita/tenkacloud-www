@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "wrangler pages dev public",
     "deploy": "wrangler pages deploy public",
+    "login": "wrangler login",
+    "whoami": "wrangler whoami",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "lint": "biome check .",

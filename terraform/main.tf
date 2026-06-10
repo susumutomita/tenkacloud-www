@@ -14,21 +14,14 @@ locals {
 }
 
 # --- Cloudflare Pages project: the static LP + Pages Functions ----------------
+# Direct-upload project (no `source` block): deploys are pushed from a trusted
+# local machine via `make deploy` (wrangler pages deploy). We deliberately do
+# NOT connect the GitHub repo, so Cloudflare's GitHub App never gets repo
+# access and no GitHub credentials are involved in deployment.
 resource "cloudflare_pages_project" "www" {
   account_id        = var.cloudflare_account_id
   name              = var.pages_project_name
   production_branch = var.production_branch
-
-  source {
-    type = "github"
-    config {
-      owner                         = var.github_owner
-      repo_name                     = var.github_repo
-      production_branch             = var.production_branch
-      deployments_enabled           = true
-      production_deployment_enabled = true
-    }
-  }
 
   build_config {
     # Static site (no build step). Functions are auto-detected from functions/.
