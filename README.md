@@ -80,10 +80,13 @@ For `make dev` with real email, put your verified addresses in a local `.dev.var
 
 ### 3. Deploy
 
-Cloudflare Pages is connected to this GitHub repo (via Terraform), so a push to
-`main` deploys automatically. Or deploy manually:
+The Pages project is a **direct-upload** project — deliberately *not* connected
+to GitHub, so Cloudflare's GitHub App never gets repo access and no GitHub
+credentials are involved in deployment. Deploys are pushed from a trusted local
+machine:
 
 ```bash
+bunx wrangler login # one-time Cloudflare OAuth (or set CLOUDFLARE_API_TOKEN)
 make deploy         # wrangler pages deploy public
 ```
 

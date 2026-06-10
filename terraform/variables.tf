@@ -18,18 +18,6 @@ variable "pages_project_name" {
   description = "Cloudflare Pages project name."
 }
 
-variable "github_owner" {
-  type        = string
-  default     = "susumutomita"
-  description = "GitHub owner of the Pages source repo."
-}
-
-variable "github_repo" {
-  type        = string
-  default     = "tenkacloud-www"
-  description = "GitHub repo connected to Cloudflare Pages."
-}
-
 variable "production_branch" {
   type        = string
   default     = "main"
