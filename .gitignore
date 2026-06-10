@@ -11,7 +11,10 @@ coverage/
 # stray tool backups
 *.bak
 
-# Terraform (state is managed by Terraform Cloud; never commit local state)
+# Terraform local secrets (CLOUDFLARE_API_TOKEN etc.) — never commit
+.env.terraform
+
+# Terraform (local state on a trusted machine; never commit it)
 .terraform/
 *.tfstate
 *.tfstate.*

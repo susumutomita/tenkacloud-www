@@ -2,7 +2,7 @@
   "name": "tenkacloud-www",
   "private": true,
   "type": "module",
-  "description": "TenkaCloud marketing site (Cloudflare Pages) + contact backend (Pages Function). Infra via Terraform Cloud.",
+  "description": "TenkaCloud marketing site (Cloudflare Pages) + contact backend (Pages Function). Infra via Terraform (make provision).",
   "scripts": {
     "dev": "wrangler pages dev public",
     "deploy": "wrangler pages deploy public",
