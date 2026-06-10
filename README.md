@@ -48,33 +48,36 @@ dashboard attaches the binding.
 
 ### 1. Cloudflare
 
-1. Add **tenkacloud.com** to your Cloudflare account (create the zone, point the
-   registrar's nameservers at Cloudflare).
-2. Create an **API token** with: `Account: Cloudflare Pages: Edit`, `Zone: DNS:
-   Edit`, `Zone: Email Routing: Edit`, `Account: Email Routing Addresses: Edit`
-   (scoped to your account/zone).
+Add **tenkacloud.com** to your Cloudflare account (create the zone, point the
+registrar's nameservers at Cloudflare).
+### 2. Wire up domain + email (dashboard, no stored credentials)
 
-### 2. Provision the infra (one command, local state)
+Policy: **no persistent API credentials on disk.** All one-time infra settings
+are made in the Cloudflare dashboard (browser session), so nothing outlives the
+session. Each step below is one-time.
 
-1. Copy `.env.terraform.example` to `.env.terraform` (git-ignored) and fill in
-   the API token from step 1, your account ID, and the inquiry-destination
-   Gmail.
-2. Run:
+1. **Email Routing** — zone `tenkacloud.com` → *Email* → *Email Routing*:
+   enable it, add your Gmail as a destination address, and click the
+   verification email Cloudflare sends (required: `send_email` only delivers to
+   verified destinations).
+2. **Custom domain** — *Workers & Pages* → `tenkacloud-www` → *Custom domains*:
+   add `tenkacloud.com` (provisions the apex DNS record automatically).
+3. **Contact-form wiring** — `tenkacloud-www` → *Settings*:
+   - *Functions → Email bindings*: add binding `CONTACT_MAILER` → the verified
+     Gmail.
+   - *Environment variables* (Production): `CONTACT_FROM=contact@tenkacloud.com`,
+     `CONTACT_TO=<your Gmail>`.
+4. Re-deploy (`make deploy`) — bindings/vars only take effect on new deployments.
 
-   ```bash
-   make provision
-   ```
+<details>
+<summary>Alternative: <code>make provision</code> (Terraform, optional)</summary>
 
-   This sources `.env.terraform`, imports the existing Pages project into the
-   local Terraform state if needed, and applies: custom domain, Email Routing,
-   and the Pages environment variables. State stays on this machine
-   (git-ignored), matching the local-deploy trust model.
+`terraform/` codifies the same settings. It needs a Cloudflare API token in a
+git-ignored `.env.terraform` (see `.env.terraform.example`) — if you use it,
+create the token with a short TTL and revoke it after the apply. Not the
+default path, per the no-stored-credentials policy.
 
-3. **Confirm the Email Routing verification email** Cloudflare sends to your Gmail
-   (one click) — `send_email` can only deliver to a verified destination.
-4. If `make provision` did not attach the `send_email` binding (provider-version
-   dependent), add it once in **Pages → Settings → Functions → Email bindings**
-   named `CONTACT_MAILER`, pointing at the verified Gmail.
+</details>
 
 ### 3. Deploy
 
@@ -84,9 +87,14 @@ credentials are involved in deployment. Deploys are pushed from a trusted local
 machine:
 
 ```bash
-make login          # one-time Cloudflare OAuth (or set CLOUDFLARE_API_TOKEN)
+make login          # Cloudflare OAuth in the browser
 make deploy         # wrangler pages deploy public
+make logout         # drop the OAuth token — no credential outlives the deploy
 ```
+
+The wrangler OAuth token carries broad fixed scopes, so per the
+no-stored-credentials policy, log out after deploying; `make login` is a
+one-click browser bounce next time.
 
 ## Verify it works
 
