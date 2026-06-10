@@ -1,13 +1,13 @@
 # tenkacloud-www
 
 The TenkaCloud **marketing site** (`tenkacloud.com`) and its **contact backend**, on
-Cloudflare — with the Cloudflare account managed as code via **Terraform Cloud**.
+Cloudflare — with the Cloudflare account managed as code via **Terraform** (local state, `make provision`).
 
 This repo is the single source of truth for **both** layers:
 
 | Layer | Tool | What |
 | --- | --- | --- |
-| Infrastructure | **Terraform** (run on **Terraform Cloud**) | Cloudflare zone DNS, Pages project, Email Routing, (optional) Access |
+| Infrastructure | **Terraform** (local, `make provision`) | Cloudflare zone DNS, Pages project, Email Routing, (optional) Access |
 | App | **Cloudflare Pages** + **Pages Functions** (Wrangler) | the static landing page + `POST /api/contact` |
 
 The contact form posts same-origin to `/api/contact`, which validates the input and
@@ -22,7 +22,7 @@ functions/
   api/contact.ts        # POST /api/contact — validate + email via send_email
   _lib/validate.ts      # pure validation + email building (unit-tested)
 test/contact.test.ts    # vitest for the validation/email logic
-terraform/              # Cloudflare IaC (Terraform Cloud backend, env-var params)
+terraform/              # Cloudflare IaC (local state; params via .env.terraform)
 wrangler.toml           # Pages config (deploy-safe: no bindings — see its comments)
 .github/workflows/ci.yml
 Makefile                # make check / before-commit
@@ -54,31 +54,25 @@ dashboard attaches the binding.
    Edit`, `Zone: Email Routing: Edit`, `Account: Email Routing Addresses: Edit`
    (scoped to your account/zone).
 
-### 2. Terraform Cloud (execution + state)
+### 2. Provision the infra (one command, local state)
 
-1. Create an organization and a **workspace**.
-2. Set workspace variables (all parameters are injected via env — nothing is
-   hardcoded):
-
-   | Kind | Name | Value |
-   | --- | --- | --- |
-   | env (sensitive) | `CLOUDFLARE_API_TOKEN` | the token from step 1 |
-   | env | `TF_VAR_cloudflare_account_id` | your Cloudflare account ID |
-   | env | `TF_VAR_contact_to` | your Gmail (inquiry destination) |
-
-   For local CLI runs also export `TF_CLOUD_ORGANIZATION` and `TF_WORKSPACE`.
-
-3. Apply:
+1. Copy `.env.terraform.example` to `.env.terraform` (git-ignored) and fill in
+   the API token from step 1, your account ID, and the inquiry-destination
+   Gmail.
+2. Run:
 
    ```bash
-   cd terraform
-   terraform init      # connects to Terraform Cloud
-   terraform apply
+   make provision
    ```
 
-4. **Confirm the Email Routing verification email** Cloudflare sends to your Gmail
+   This sources `.env.terraform`, imports the existing Pages project into the
+   local Terraform state if needed, and applies: custom domain, Email Routing,
+   and the Pages environment variables. State stays on this machine
+   (git-ignored), matching the local-deploy trust model.
+
+3. **Confirm the Email Routing verification email** Cloudflare sends to your Gmail
    (one click) — `send_email` can only deliver to a verified destination.
-5. If `terraform apply` did not attach the `send_email` binding (provider-version
+4. If `make provision` did not attach the `send_email` binding (provider-version
    dependent), add it once in **Pages → Settings → Functions → Email bindings**
    named `CONTACT_MAILER`, pointing at the verified Gmail.
 

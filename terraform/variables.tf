@@ -1,5 +1,5 @@
-# All values are injected via environment variables (Terraform Cloud workspace
-# variables: TF_VAR_<name>), not committed. See terraform.tfvars.example.
+# All values are injected via environment variables (TF_VAR_<name>, sourced
+# from the git-ignored .env.terraform by `make provision`), not committed.
 
 variable "cloudflare_account_id" {
   type        = string

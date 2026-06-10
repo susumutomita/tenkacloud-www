@@ -1,10 +1,9 @@
 terraform {
   required_version = ">= 1.6.0"
 
-  # Terraform Cloud is the execution + state backend. Organization and workspace
-  # are injected via environment variables (TF_CLOUD_ORGANIZATION / TF_WORKSPACE)
-  # so nothing environment-specific is hardcoded here.
-  cloud {}
+  # Local state (git-ignored): apply runs from a trusted local machine via
+  # `make provision`, the same trust model as the wrangler direct-upload
+  # deploys. The Cloudflare API token is never written into the state.
 
   required_providers {
     cloudflare = {
@@ -15,6 +14,6 @@ terraform {
 }
 
 # The Cloudflare API token is read from the CLOUDFLARE_API_TOKEN environment
-# variable (set as a sensitive Terraform Cloud workspace variable). Do not
-# hardcode credentials in this repo.
+# variable (sourced from the git-ignored .env.terraform by `make provision`).
+# Do not hardcode credentials in this repo.
 provider "cloudflare" {}

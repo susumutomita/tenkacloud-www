@@ -1,6 +1,6 @@
-# Example variables. For Terraform Cloud, set these as workspace variables
-# (TF_VAR_* or plain Terraform variables) instead of a committed tfvars file.
-# Secrets (CLOUDFLARE_API_TOKEN) go in the workspace ENV vars (sensitive), never here.
+# Example variables. Prefer the .env.terraform flow (`make provision`), which
+# injects these as TF_VAR_* environment variables — see .env.terraform.example.
+# Secrets (CLOUDFLARE_API_TOKEN) are env-only, never in a committed file.
 
 cloudflare_account_id = "your-cloudflare-account-id"
 contact_to            = "your-gmail@gmail.com"
