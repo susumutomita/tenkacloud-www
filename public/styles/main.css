@@ -122,14 +122,22 @@ p { margin: 0; }
   text-wrap: balance;
 }
 .hero .cta-row {
-  display: flex; gap: 30px; justify-content: flex-start;
+  display: flex; gap: 22px; justify-content: flex-start; align-items: center;
+  flex-wrap: wrap;
   margin-top: 30px; font-size: 15px; font-weight: 800;
 }
 .hero .cta-row a {
   color: #0066cc; text-decoration: none;
   display: inline-flex; align-items: center; gap: 4px;
+  white-space: nowrap;
 }
 .hero .cta-row a:hover { text-decoration: underline; }
+.hero .cta-row a.cta-primary {
+  height: 44px; padding: 0 22px;
+  background: var(--dark); color: var(--paper);
+  border-radius: 999px;
+}
+.hero .cta-row a.cta-primary:hover { text-decoration: none; background: #16243a; }
 .hero .hero-trust {
   margin: 22px 0 0;
   font-size: 12.5px;

@@ -160,6 +160,8 @@
       "extend.h2": "足りない問題は、自分で作ればいい。",
       "extend.lead":
         '問題カタログは <a href="https://github.com/susumutomita/TenkaCloudChallenge" target="_blank" rel="noopener noreferrer">TenkaCloudChallenge</a> リポジトリで完全に開かれていて、 metadata.json + template.yaml の 2 ファイルを書けば 1 問追加できます。 Claude Code 等のコーディングエージェント向けに 問題作成 skill (<code>new-problem</code>) も同梱されているので、 「こういう問題を作りたい」 とアイデアを話すだけで、 初めてでも 1 問が形になります。',
+      "extend.starter":
+        'スターターカタログは <strong>ready 5 問 + draft 2 問 + 1 イベント bundle</strong> (= 1 Challenge + 2 Battles を 60〜90 分で回す <a href="https://github.com/susumutomita/TenkaCloudChallenge/blob/main/bundles/starter-event.json" target="_blank" rel="noopener noreferrer"><code>starter-event</code></a>)。 CCoE / JAWS-UG meetup で 「今日これ流せばいい」 が即決できる credible なラインナップです。',
       "extend.cta1": "問題カタログを見る",
       "extend.cta2": "new-problem skill",
 
@@ -459,6 +461,8 @@
       "extend.h2": "Missing a problem? Author your own.",
       "extend.lead":
         'The problem catalog lives in the open <a href="https://github.com/susumutomita/TenkaCloudChallenge" target="_blank" rel="noopener noreferrer">TenkaCloudChallenge</a> repo — write two files (metadata.json + template.yaml) and you have a new problem. A <code>new-problem</code> skill is shipped for Claude Code and other coding agents, so even first-timers can ship a problem just by describing the idea.',
+      "extend.starter":
+        'The starter catalog ships <strong>5 ready problems + 2 drafts + 1 event bundle</strong> (= <a href="https://github.com/susumutomita/TenkaCloudChallenge/blob/main/bundles/starter-event.json" target="_blank" rel="noopener noreferrer"><code>starter-event</code></a>, a 60-90 minute run of 1 Challenge + 2 Battles). A credible lineup a CCoE or JAWS-UG meetup can pick up and run today.',
       "extend.cta1": "Browse the catalog",
       "extend.cta2": "new-problem skill",
 
@@ -564,6 +568,7 @@
       "contact.field_email": "Email *",
       "contact.field_plan": "Plan you're interested in",
       "contact.plan_unknown": "Not sure / let's talk",
+      "contact.plan_custom_problem": "Custom problem development",
       "contact.plan_oss": "OSS self-host help",
       "contact.plan_other": "Other / custom",
       "contact.field_scale": "Expected scale / timing",
