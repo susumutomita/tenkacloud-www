@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help install install-ci dev login deploy provision lint format typecheck test tf-fmt tf-fmt-check tf-validate check before-commit
+.PHONY: help install install-ci dev login logout deploy provision lint format typecheck test tf-fmt tf-fmt-check tf-validate check before-commit
 
 # terraform binary: PATH first, then mise (this machine manages it via mise).
 TF := $(shell command -v terraform >/dev/null 2>&1 && echo terraform || echo mise exec terraform -- terraform)
@@ -13,8 +13,10 @@ install-ci: ## CI install: frozen lockfile + no lifecycle scripts (supply-chain)
 	bun install --frozen-lockfile --ignore-scripts
 dev:       ## Local dev server (Cloudflare Pages, with functions)
 	bun run dev
-login:     ## One-time Cloudflare OAuth for wrangler (local node_modules binary)
+login:     ## Cloudflare OAuth for wrangler (local node_modules binary)
 	bun run login
+logout:    ## Drop the wrangler OAuth token (no stored credentials between deploys)
+	bun run logout
 deploy:    ## Deploy the site + functions to Cloudflare Pages
 	bun run deploy
 provision: ## One-command infra: custom domain, email routing, Pages env (needs .env.terraform)
