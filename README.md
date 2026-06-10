@@ -23,7 +23,7 @@ functions/
   _lib/validate.ts      # pure validation + email building (unit-tested)
 test/contact.test.ts    # vitest for the validation/email logic
 terraform/              # Cloudflare IaC (Terraform Cloud backend, env-var params)
-wrangler.toml           # Pages config (+ send_email binding for local dev)
+wrangler.toml           # Pages config (deploy-safe: no bindings — see its comments)
 .github/workflows/ci.yml
 Makefile                # make check / before-commit
 ```
@@ -37,8 +37,12 @@ make dev            # wrangler pages dev (serves public/ + functions)
 ```
 
 `make test` runs the validation/email unit tests without any Cloudflare runtime.
-For `make dev` with real email, put your verified addresses in a local `.dev.vars`
-(git-ignored) and uncomment the `send_email` binding in `wrangler.toml`.
+Note: `wrangler.toml` carries no `send_email` binding (`wrangler pages deploy`
+rejects it in a Pages config, and Pages cannot load an alternate dev config), so
+in `make dev` a contact-form POST takes the handled error path (502 JSON + the
+form's GitHub Discussions fallback). The email-building logic is covered by the
+unit tests; real sending only exists in production, where Terraform / the Pages
+dashboard attaches the binding.
 
 ## One-time setup
 

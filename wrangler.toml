@@ -2,14 +2,15 @@ name = "tenkacloud-www"
 compatibility_date = "2026-06-01"
 pages_build_output_dir = "public"
 
-# Email Workers binding used by functions/api/contact.ts. Declaring it here lets
-# `wrangler pages dev` load the `cloudflare:email` module (local send is
-# simulated/logged, not actually delivered). In PRODUCTION the binding and the
-# CONTACT_FROM / CONTACT_TO vars are managed by Terraform on the Pages project
-# (see terraform/ and README.md), so they are intentionally NOT hardcoded here.
-[[send_email]]
-name = "CONTACT_MAILER"
-
-# For local testing of real field values, put CONTACT_FROM / CONTACT_TO in a
-# git-ignored `.dev.vars` (see .dev.vars.example). The dev server starts without
-# them — they are only read when a form is submitted.
+# NOTE: no `send_email` binding here, on purpose. `wrangler pages deploy`
+# validates this file and rejects `send_email` (not a Pages-supported config
+# binding), and Pages offers no way to load an alternate config for dev
+# (`--config` and WRANGLER_CONFIG are both refused/ignored for Pages commands).
+#
+# Consequences for the CONTACT_MAILER binding used by functions/api/contact.ts:
+#   - local dev:  the binding is absent, so POST /api/contact takes the handled
+#                 error path (502 JSON + the form's GitHub Discussions fallback).
+#                 The email-building logic itself is unit-tested (test/).
+#   - production: the binding and the CONTACT_FROM / CONTACT_TO vars are attached
+#                 to the Pages project by Terraform / the Pages dashboard
+#                 (Settings -> Functions -> Email bindings). See README.md.
